@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -118,7 +118,7 @@
       .wrap{width:min(100% - 22px,1440px)}.topbar{height:64px}.brand span:last-child{font-size:14px}.hero{padding-top:38px}.hero-bottom{margin-top:26px}.card{grid-column:1/-1}.grid.list .card{display:block}.section-head{display:block}.section-head p{margin-top:14px}.feature{min-height:360px}.feature-label{left:14px;right:14px;bottom:14px}.project-content{padding:22px}.project-hero{height:250px}.facts{grid-template-columns:1fr}.copyright{display:block}.copyright span{display:block;margin-top:5px}}
   </style>
 </head>
-<body dir="rtl">
+<body dir="ltr">
 <header>
   <div class="wrap topbar">
     <a class="brand" href="#top" aria-label="Home"><span class="mark"></span><span data-i18n="brand">علی جنابیان</span></a>
@@ -127,7 +127,7 @@
       <a href="#about" data-i18n="navAbout">درباره من</a>
       <a href="#contact" data-i18n="navContact">تماس</a>
       <div class="lang" aria-label="Language switcher">
-        <button class="active" data-lang="fa">FA</button><button data-lang="en">EN</button>
+        <button data-lang="fa">FA</button><button class="active" data-lang="en">EN</button>
       </div>
     </nav>
   </div>
@@ -227,7 +227,7 @@ const projects=[
  {id:'rimdan',cat:'planning',fa:{title:'هاب صنعتی–لجستیکی ریمدان',desc:'ساختاردهی پهنه ۱۴۸۱ هکتاری مرزی با محور میانی، دو هاب خدماتی و شبکه لجستیک و زیرساخت.',loc:'دشتیاری',role:'شهرسازی',status:'در حال توسعه'},en:{title:'Rimdan Border Industrial Hub',desc:'A 1,481-hectare border development organized by a central spine, two service hubs, and logistics infrastructure.',loc:'Dashtyari',role:'Urban Planning',status:'Ongoing'},year:'2026'},
  {id:'andisheh',cat:'urban-design',fa:{title:'مرکز گردشگری–خدماتی اندیشه',desc:'بازتعریف یک مرکز شهری مختلط با تمرکز بر سرزندگی، گردشگری، خدمات، فضای باز و اتصال به بافت پیرامون.',loc:'اندیشه',role:'طراحی شهری + شهرسازی',status:'در حال توسعه'},en:{title:'Andisheh Tourism & Hospitality CBD',desc:'Reframing a mixed-use urban center around vitality, tourism, services, open space, and stronger links to its surroundings.',loc:'Andisheh',role:'Urban Design + Planning',status:'Ongoing'},year:'2025–26'}
 ];
-let lang='fa', active='all', view='grid';
+let lang='en', active='all', view='grid';
 const categoryMap={architecture:'architecture','urban-design':'urbanDesign',planning:'urbanPlanning',research:'research'};
 function t(k){return copy[lang][k]||k}
 function setLanguage(next){
@@ -274,7 +274,7 @@ document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLanguage(b
 document.getElementById('search').addEventListener('input',renderProjects);
 document.getElementById('gridBtn').onclick=()=>{view='grid';document.getElementById('gridBtn').classList.add('active');document.getElementById('listBtn').classList.remove('active');renderProjects()};
 document.getElementById('listBtn').onclick=()=>{view='list';document.getElementById('listBtn').classList.add('active');document.getElementById('gridBtn').classList.remove('active');renderProjects()};
-setLanguage('fa');
+setLanguage('en');
 </script>
 <!-- Pages rebuild after username change -->
 </body>
