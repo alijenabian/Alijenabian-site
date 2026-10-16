@@ -96,6 +96,10 @@
     .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px}
     .footer-grid h3{font-size:34px;margin:0 0 10px;letter-spacing:-.04em}
     .footer-grid p{margin:0;color:var(--muted)}
+    .contact-info{display:grid;gap:7px;margin-top:18px;font-size:14px}
+    .contact-info a{display:flex;gap:10px;align-items:baseline;width:max-content;max-width:100%;border-bottom:1px solid transparent}
+    .contact-info a:hover{border-bottom-color:currentColor}
+    .contact-info span{color:var(--muted);min-width:58px}
     .footer-links{display:grid;gap:6px;font-size:14px}
     .copyright{margin-top:30px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:20px}
     .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;align-items:end;justify-content:center;padding:18px;backdrop-filter:blur(7px)}
@@ -187,7 +191,7 @@
 </main>
 <footer id="contact">
   <div class="wrap footer-grid">
-    <div><h3 data-i18n="footerTitle">برای گفت‌وگو درباره یک پروژه</h3><p data-i18n="footerText">اطلاعات تماس حرفه‌ای، رزومه و لینک شبکه‌های تخصصی در نسخه نهایی این بخش تکمیل می‌شود.</p></div>
+    <div><h3 data-i18n="footerTitle">برای گفت‌وگو درباره یک پروژه</h3><p data-i18n="footerText">برای همکاری حرفه‌ای، پروژه‌های طراحی، برنامه‌ریزی شهری و پژوهش می‌توانید مستقیماً با من در تماس باشید.</p><div class="contact-info"><a href="tel:+989910456592"><span data-i18n="phoneLabel">همراه</span><bdi>09910456592</bdi></a><a href="mailto:ali.alaljenabian@gmail.com"><span data-i18n="emailLabel">ایمیل</span><bdi>ali.alaljenabian@gmail.com</bdi></a></div></div>
     <div class="footer-links"><strong data-i18n="footerNav">دسترسی</strong><a href="#work" data-i18n="navWork">پروژه‌ها</a><a href="#about" data-i18n="navAbout">درباره من</a></div>
     <div class="footer-links"><strong data-i18n="footerLang">زبان</strong><button class="pill" onclick="setLanguage('fa')">فارسی</button><button class="pill" onclick="setLanguage('en')">English</button></div>
   </div>
@@ -217,7 +221,7 @@ const copy={
   aboutTitle:'درباره من',aboutIntro:'تمرکز حرفه‌ای بر طراحی و پژوهش میان‌رشته‌ای با نگاه هم‌زمان به مقیاس بنا، فضاهای شهری و ساختارهای کلان.',aboutName:'علی جنابیان',aboutRole:'معمار، طراح شهری و برنامه‌ریز شهری',
   aboutCopy:'رویکرد من بر این ایده استوار است که طراحی خوب از خواندن دقیق زمینه آغاز می‌شود؛ از مورفولوژی و حافظه جمعی تا زیرساخت، اکولوژی و امکان اجرا.',
   fact1:'حوزه اصلی فعالیت',fact2:'سال تجربه حرفه‌ای',fact3:'تحلیل فضایی و داده‌محور',fact4:'پژوهش، ضابطه و راهنمای طراحی',
-  footerTitle:'برای گفت‌وگو درباره یک پروژه',footerText:'اطلاعات تماس حرفه‌ای، رزومه و لینک شبکه‌های تخصصی در نسخه نهایی این بخش تکمیل می‌شود.',footerNav:'دسترسی',footerLang:'زبان',copyright:'معماری · طراحی شهری · شهرسازی · پژوهش',
+  footerTitle:'برای گفت‌وگو درباره یک پروژه',footerText:'برای همکاری حرفه‌ای، پروژه‌های طراحی، برنامه‌ریزی شهری و پژوهش می‌توانید مستقیماً با من در تماس باشید.',phoneLabel:'همراه',emailLabel:'ایمیل',footerNav:'دسترسی',footerLang:'زبان',copyright:'معماری · طراحی شهری · شهرسازی · پژوهش',
   all:'همه',architecture:'معماری',urbanDesign:'طراحی شهری',urbanPlanning:'شهرسازی',research:'پژوهش',noResults:'پروژه‌ای با این جست‌وجو پیدا نشد.',year:'سال',location:'مکان',role:'حوزه',status:'وضعیت',ongoing:'در حال توسعه',completed:'تکمیل‌شده',professional:'حرفه‌ای',study:'مطالعاتی'
  },
  en:{
