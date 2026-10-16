@@ -67,7 +67,9 @@
     .card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(0,0,0,.09)}
     .thumb{aspect-ratio:1.36/1;position:relative;overflow:hidden;background:#ccc}
     .thumb:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.28),transparent 45%)}
-    .thumb .shape{position:absolute;inset:13% 11%;border:2px solid rgba(255,255,255,.7);transform:rotate(var(--r,-7deg))}\n    .thumb.has-image{background-size:cover;background-position:center;background-repeat:no-repeat}\n    .thumb.has-image .shape{display:none}
+    .thumb .shape{position:absolute;inset:13% 11%;border:2px solid rgba(255,255,255,.7);transform:rotate(var(--r,-7deg))}
+    .thumb.has-image{background-size:cover;background-position:center;background-repeat:no-repeat}
+    .thumb.has-image .shape{display:none}
     .thumb.arch{background:linear-gradient(135deg,#373737,#c8bda9 48%,#f0eee6 49%)}
     .thumb.urban-design{background:linear-gradient(150deg,#675045 0 32%,#d9caae 32% 56%,#75806d 56%)}
     .thumb.planning{background:linear-gradient(145deg,#425159 0 27%,#b5c3b0 27% 48%,#eee8d8 48% 69%,#62766c 69%)}
@@ -102,7 +104,12 @@
     .panel-top{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
     .close{width:40px;height:40px;border:1px solid var(--line);background:#fff;border-radius:50%;cursor:pointer;font-size:20px}
     .project-hero{height:360px;background:linear-gradient(145deg,#252525,#d5ccb9 32%,#70806f 59%,#a94b32);position:relative;overflow:hidden}
-    .project-hero:after{content:"";position:absolute;width:60%;height:50%;border:3px solid rgba(255,255,255,.65);left:20%;top:24%;transform:rotate(-8deg)}\n    .project-hero.has-image{background-size:cover;background-position:center;background-repeat:no-repeat}\n    .project-hero.has-image:after{display:none}\n    .project-gallery{padding:0 32px 32px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}\n    .project-gallery img{width:100%;height:auto;display:block;border-radius:12px;background:#eee}\n    @media(max-width:640px){.project-gallery{padding:0 22px 22px;grid-template-columns:1fr}}
+    .project-hero:after{content:"";position:absolute;width:60%;height:50%;border:3px solid rgba(255,255,255,.65);left:20%;top:24%;transform:rotate(-8deg)}
+    .project-hero.has-image{background-size:cover;background-position:center;background-repeat:no-repeat}
+    .project-hero.has-image:after{display:none}
+    .project-gallery{padding:0 32px 32px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .project-gallery img{width:100%;height:auto;display:block;border-radius:12px;background:#eee}
+    @media(max-width:640px){.project-gallery{padding:0 22px 22px;grid-template-columns:1fr}}
     .project-content{padding:32px;display:grid;grid-template-columns:1.25fr .75fr;gap:40px}
     .project-content h2{font-size:clamp(36px,6vw,76px);line-height:.95;margin:0 0 20px;letter-spacing:-.05em}
     body[dir="rtl"] .project-content h2{line-height:1.08;letter-spacing:-.02em}
@@ -189,6 +196,7 @@
       <div><h2 id="modalTitle"></h2><p id="modalDesc"></p></div>
       <div class="specs" id="modalSpecs"></div>
     </div>
+    <div class="project-gallery" id="modalGallery"></div>
   </div>
 </div>
 
@@ -265,6 +273,11 @@ function openProject(id){
  document.getElementById('modalSpecs').innerHTML=[
   [t('year'),p.year],[t('location'),p[lang].loc],[t('role'),p[lang].role],[t('status'),p[lang].status]
  ].map(([a,b])=>`<div class="spec"><small>${a}</small><strong>${b}</strong></div>`).join('');
+ const hero=document.querySelector('.project-hero');
+ hero.classList.toggle('has-image',!!p.cover);
+ hero.style.backgroundImage=p.cover?`url('${encodeURI(p.cover)}')`:'';
+ const gallery=document.getElementById('modalGallery');
+ gallery.innerHTML=(p.images||[]).map((src,idx)=>`<img src="${encodeURI(src)}" loading="lazy" alt="${p[lang].title} — ${idx+1}">`).join('');
  const m=document.getElementById('modal');m.classList.add('open');m.setAttribute('aria-hidden','false');
 }
 document.getElementById('closeModal').onclick=()=>{document.getElementById('modal').classList.remove('open');document.getElementById('modal').setAttribute('aria-hidden','true')};
