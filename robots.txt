@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alijenabian.github.io/Alijenabian-site/sitemap.xml
