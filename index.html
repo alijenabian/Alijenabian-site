@@ -330,7 +330,7 @@ function renderProjects(){
  });
  const grid=document.getElementById('projectGrid');grid.className='grid'+(view==='list'?' list':'');
  if(!list.length){grid.innerHTML=`<div class="empty">${t('noResults')}</div>`;return}
- grid.innerHTML=list.map((p,i)=>`<article class="card" data-id="${p.id}"><div class="thumb ${p.cat} ${p.cover?'has-image':''}" ${p.cover?`style="background-image:url('${encodeURI(p.cover)}');background-size:${p.coverFit||'cover'};background-color:${p.coverBg||'transparent'}"`:''}>${p.cover?'':`<div class="shape" style="--r:${(i%2?8:-7)}deg"></div>`}<span class="tag">${t(categoryMap[p.cat])}</span></div><div class="card-body"><div class="meta"><span>${p[lang].loc}</span><span>${p.year}</span></div><h3>${p[lang].title}</h3><p>${p[lang].desc}</p></div></article>`).join('');
+ grid.innerHTML=list.map((p,i)=>`<article class="card" data-id="${p.id}"><div class="thumb ${p.cat} ${p.cover?'has-image':''}" ${p.cover?`style="background-image:url('${encodeURI(p.cover)}');background-size:${p.coverFit||'cover'};background-position:center center;background-repeat:no-repeat;background-color:${p.coverBg||'transparent'}"`:''}>${p.cover?'':`<div class="shape" style="--r:${(i%2?8:-7)}deg"></div>`}<span class="tag">${t(categoryMap[p.cat])}</span></div><div class="card-body"><div class="meta"><span>${p[lang].loc}</span><span>${p.year}</span></div><h3>${p[lang].title}</h3><p>${p[lang].desc}</p></div></article>`).join('');
  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openProject(c.dataset.id));
 }
 function openProject(id){
@@ -345,10 +345,11 @@ function openProject(id){
  hero.classList.toggle('has-image',!!p.cover);
  hero.style.backgroundImage=p.cover?`url('${encodeURI(p.cover)}')`:'';
  hero.style.backgroundSize=p.coverFit||'cover';
+ hero.style.backgroundPosition='center center';
+ hero.style.backgroundRepeat='no-repeat';
  hero.style.backgroundColor=p.coverBg||'transparent';
  const gallery=document.getElementById('modalGallery');
- const galleryImages=(p.images||[]).filter(src=>src!==p.cover);
- gallery.innerHTML=galleryImages.map((src,idx)=>`<img src="${encodeURI(src)}" loading="lazy" alt="${p[lang].title} — ${idx+1}">`).join('');
+ gallery.innerHTML=(p.images||[]).map((src,idx)=>`<img src="${encodeURI(src)}" loading="lazy" alt="${p[lang].title} — ${idx+1}">`).join('');
  const m=document.getElementById('modal');m.classList.add('open');m.setAttribute('aria-hidden','false');
 }
 document.getElementById('closeModal').onclick=()=>{document.getElementById('modal').classList.remove('open');document.getElementById('modal').setAttribute('aria-hidden','true')};
