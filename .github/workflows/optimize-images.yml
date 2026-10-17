@@ -40,6 +40,8 @@ jobs:
 
           convert "osmaniye-site-cover.jpg"             -auto-orient -resize "1920x1920>" -strip -quality 80             "assets/thumbs/osmaniye-cover.webp"
 
+          convert "assets/oudlajan/oudl.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/oudlajan-cover.webp"
+
           ls -lh assets/thumbs
 
       - name: Commit optimized covers
