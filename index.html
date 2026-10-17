@@ -347,7 +347,8 @@ function openProject(id){
  hero.style.backgroundSize=p.coverFit||'cover';
  hero.style.backgroundColor=p.coverBg||'transparent';
  const gallery=document.getElementById('modalGallery');
- gallery.innerHTML=(p.images||[]).map((src,idx)=>`<img src="${encodeURI(src)}" loading="lazy" alt="${p[lang].title} — ${idx+1}">`).join('');
+ const galleryImages=(p.images||[]).filter(src=>src!==p.cover);
+ gallery.innerHTML=galleryImages.map((src,idx)=>`<img src="${encodeURI(src)}" loading="lazy" alt="${p[lang].title} — ${idx+1}">`).join('');
  const m=document.getElementById('modal');m.classList.add('open');m.setAttribute('aria-hidden','false');
 }
 document.getElementById('closeModal').onclick=()=>{document.getElementById('modal').classList.remove('open');document.getElementById('modal').setAttribute('aria-hidden','true')};
