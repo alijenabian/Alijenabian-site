@@ -1,0 +1,55 @@
+name: Optimize site cover images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/optimize-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: Generate lightweight WebP covers
+        run: |
+          set -e
+          mkdir -p assets/thumbs
+
+          convert "assets/mahestan/20211110_210510.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/mahestan-cover.webp"
+
+          convert "assets/vindarik/file_00000000da0881f493745628b5fdbfbb.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/evin-darakeh-cover.webp"
+
+          convert "assets/kashan/file_000000002e0481f49c7cb192034cbcf2.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/kashan-cover.webp"
+
+          convert "assets/khusf/1o.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/khusf-cover.webp"
+
+          convert "Flush plaza with burgundy inlays.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/arak-cover.webp"
+
+          convert "sanglaj_sample.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/sanglaj-cover.webp"
+
+          convert "osmaniye-site-cover.jpg"             -auto-orient -resize "1920x1920>" -strip -quality 80             "assets/thumbs/osmaniye-cover.webp"
+
+          ls -lh assets/thumbs
+
+      - name: Commit optimized covers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/thumbs
+          if git diff --cached --quiet; then
+            echo "No image changes to commit."
+          else
+            git commit -m "Optimize portfolio cover images"
+            git push
+          fi
