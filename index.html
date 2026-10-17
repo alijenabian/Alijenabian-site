@@ -76,6 +76,13 @@
     .feature-label h2{font-size:clamp(28px,4vw,64px);line-height:1;margin:0;letter-spacing:-.04em}
     body[dir="rtl"] .feature-label h2{letter-spacing:-.02em}
     .feature-label small{max-width:370px;font-size:14px;background:rgba(0,0,0,.42);padding:10px 12px;border-radius:10px;backdrop-filter:blur(9px)}
+    .design-process{padding:22px 0 52px}
+    .design-process-head{display:flex;justify-content:space-between;gap:28px;align-items:end;border-top:1px solid #bdbdb6;padding-top:14px;margin-bottom:18px}
+    .design-process-head h3{margin:0;font-size:clamp(26px,3vw,46px);letter-spacing:-.035em}
+    .design-process-head p{margin:0;max-width:520px;color:var(--muted);font-size:14px}
+    .design-process figure{margin:0}
+    .design-process img{display:block;width:100%;height:auto;border-radius:14px;background:#ddd;box-shadow:var(--shadow)}
+    .design-process figcaption{margin-top:9px;font-size:12px;color:var(--muted)}
     .section{padding:72px 0}
     .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;border-top:1px solid #bdbdb6;padding-top:16px;margin-bottom:26px}
     .section-head h2{font-size:clamp(32px,5vw,74px);line-height:1;margin:0;letter-spacing:-.045em}
@@ -157,6 +164,7 @@
     .spec strong{font-size:16px}
     .empty{grid-column:1/-1;padding:60px 10px;text-align:center;color:var(--muted)}
     @media(max-width:980px){
+      .design-process-head{align-items:start;flex-direction:column}
       nav a{display:none}.hero-bottom,.about-grid,.footer-grid,.project-content{grid-template-columns:1fr}.discipline-stack{max-width:430px}.card{grid-column:span 6}.controls{grid-template-columns:1fr}.views{justify-self:start}.section{padding:55px 0}.feature-label{align-items:start;flex-direction:column}.feature-label small{max-width:100%}}
     @media(max-width:640px){
       .wrap{width:min(100% - 22px,1440px)}.topbar{height:64px}.brand span:last-child{font-size:14px}.hero{padding-top:38px}.hero-bottom{margin-top:26px}.card{grid-column:1/-1}.grid.list .card{display:block}.section-head{display:block}.section-head p{margin-top:14px}.feature{min-height:360px}.feature-label{left:14px;right:14px;bottom:14px}.project-content{padding:22px}.project-hero{height:250px}.facts{grid-template-columns:1fr}.copyright{display:block}.copyright span{display:block;margin-top:5px}}
@@ -192,6 +200,17 @@
       <small data-i18n="featuredText">طرح جامع مرکز شهر عثمانیه، ترکیه؛ طراحی و ترسیم دستی با ماژیک.</small>
     </div>
   </div>
+
+  <section class="wrap design-process" aria-labelledby="osmaniye-process-title">
+    <div class="design-process-head">
+      <h3 id="osmaniye-process-title" data-i18n="processTitle">فرآیند طراحی</h3>
+      <p data-i18n="processText">تصویری از روند طراحی دستی پروژه عثمانیه با ماژیک؛ بخشی از فرآیند توسعه ایده و ارائه طرح.</p>
+    </div>
+    <figure>
+      <img src="assets/osmaniye/IMG_20261017_193811_704.jpg" alt="Osmaniye City Center Masterplan — design process with markers" loading="lazy">
+      <figcaption data-i18n="processCaption">طراحی دستی و توسعه ایده با ماژیک — پروژه مرکز شهر عثمانیه</figcaption>
+    </figure>
+  </section>
 
   <section class="wrap section" id="work">
     <div class="section-head"><h2 data-i18n="workTitle">پروژه‌ها</h2><p data-i18n="workIntro">چهار حوزه از مقیاس معماری تا شهر و پژوهش؛ هر پروژه می‌تواند در بیش از یک حوزه برچسب‌گذاری شود.</p></div>
@@ -250,6 +269,7 @@ const copy={
   heroEyebrow:'معماری · طراحی شهری · شهرسازی · پژوهش',heroTitle:'از بنا تا شهر؛ طراحی در پیوند با زمینه، زندگی و آینده.',
   heroLead:'پرتفولیوی حرفه‌ای علی جنابیان؛ مجموعه‌ای از پروژه‌های معماری، طراحی شهری، برنامه‌ریزی شهری و پژوهش‌های کاربردی در مقیاس‌های مختلف.',
   featuredTitle:'طرح جامع مرکز شهر عثمانیه',featuredText:'طرح جامع مرکز شهر عثمانیه، ترکیه؛ طراحی و ترسیم دستی با ماژیک.',
+  processTitle:'فرآیند طراحی',processText:'تصویری از روند طراحی دستی پروژه عثمانیه با ماژیک؛ بخشی از فرآیند توسعه ایده و ارائه طرح.',processCaption:'طراحی دستی و توسعه ایده با ماژیک — پروژه مرکز شهر عثمانیه',
   workTitle:'پروژه‌ها',workIntro:'چهار حوزه از مقیاس معماری تا شهر و پژوهش؛ هر پروژه می‌تواند در بیش از یک حوزه برچسب‌گذاری شود.',
   aboutTitle:'درباره من',aboutIntro:'تمرکز حرفه‌ای بر طراحی و پژوهش میان‌رشته‌ای با نگاه هم‌زمان به مقیاس بنا، فضاهای شهری و ساختارهای کلان.',aboutName:'علی جنابیان',aboutRole:'معمار، طراح شهری و برنامه‌ریز شهری',
   aboutCopy:'رویکرد من بر این ایده استوار است که طراحی خوب از خواندن دقیق زمینه آغاز می‌شود؛ از مورفولوژی و حافظه جمعی تا زیرساخت، اکولوژی و امکان اجرا.',
@@ -262,6 +282,7 @@ const copy={
   heroEyebrow:'Architecture · Urban Design · Urban Planning · Research',heroTitle:'From building to city: design connected to context, life, and the future.',
   heroLead:'The professional portfolio of Alijenabian, bringing together architecture, urban design, urban planning, and applied research across multiple scales.',
   featuredTitle:'Osmaniye City Center Masterplan',featuredText:'Osmaniye city center masterplan, Turkey — hand-drawn and rendered with markers.',
+  processTitle:'Design Process',processText:'A working view of the Osmaniye project, showing the hand-rendered marker process used to develop and communicate the design.',processCaption:'Hand rendering and design development with markers — Osmaniye City Center Masterplan',
   workTitle:'Selected Work',workIntro:'Four fields spanning architecture, city-making, planning, and research. Projects can carry more than one discipline tag.',
   aboutTitle:'About',aboutName:'Ali Jenabian',aboutRole:'Architect · Urban Designer · Urban Planner',aboutIntro:'An interdisciplinary practice linking the scale of buildings, public spaces, and metropolitan systems through design and research.',
   aboutCopy:'My approach starts with a careful reading of context — from morphology and collective memory to infrastructure, ecology, and the realities of implementation.',
