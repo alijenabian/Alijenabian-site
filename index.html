@@ -65,27 +65,19 @@
     .brand-masthead{
       width:100%;min-height:260px;display:flex;align-items:center;justify-content:center;
       padding:34px 24px 30px;position:relative;overflow:hidden;
-      background:
-        linear-gradient(180deg,rgba(255,255,255,.26),rgba(232,224,210,.18)),
-        var(--paper);
-      border-bottom:1px solid rgba(72,59,40,.10);
+      background:transparent;
+      border-bottom:0;
     }
-    .brand-masthead::after{
-      content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;
-      background-image:
-        radial-gradient(circle,rgba(74,61,42,.07) 0 .55px,transparent .7px),
-        repeating-linear-gradient(12deg,transparent 0 9px,rgba(90,72,47,.025) 9px 10px,transparent 10px 19px);
-      background-size:8px 8px,100% 100%;
-      mix-blend-mode:multiply;
-    }
+    .brand-masthead::after{display:none}
     .brand-masthead img{
       display:block;width:min(680px,86vw);height:auto;position:relative;z-index:1;
-      mix-blend-mode:multiply;filter:contrast(1.02);
+      mix-blend-mode:multiply;filter:contrast(1.03) brightness(.985);
+      opacity:.97;
     }
-    header{position:sticky;top:0;z-index:20;background:rgba(238,233,223,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(72,59,40,.10)}
+    header{position:sticky;top:0;z-index:20;background:rgba(238,233,223,.68);backdrop-filter:blur(14px);border-bottom:0;box-shadow:0 10px 24px rgba(57,47,34,.025)}
     .topbar{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{display:flex;align-items:center}
-    .brand-logo{display:block;width:220px;height:auto;mix-blend-mode:multiply;flex:0 0 auto}
+    .brand-logo{display:block;width:220px;height:auto;mix-blend-mode:multiply;filter:contrast(1.03) brightness(.985);opacity:.97;flex:0 0 auto}
     nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     nav a,.pill{border:1px solid transparent;padding:9px 12px;border-radius:999px;color:#3a3a35;font-size:14px;cursor:pointer;background:transparent}
     nav a:hover,.pill:hover{border-color:var(--line);background:var(--paper)}
