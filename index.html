@@ -163,6 +163,43 @@
     .spec small{display:block;color:var(--muted);margin-bottom:4px}
     .spec strong{font-size:16px}
     .empty{grid-column:1/-1;padding:60px 10px;text-align:center;color:var(--muted)}
+    /* Desktop-specific refinement: keep current tablet/mobile layout untouched */
+    @media(min-width:1200px){
+      .wrap{width:min(1340px,calc(100% - 80px))}
+      .topbar{height:78px}
+      .hero{padding:72px 0 50px}
+      h1{font-size:clamp(72px,6.4vw,108px);max-width:1120px}
+      .hero-bottom{grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr);gap:64px;margin-top:50px}
+      .hero p{font-size:clamp(20px,1.55vw,26px);max-width:780px}
+      .discipline-stack{font-size:13px}
+      .feature{height:clamp(520px,41vw,650px);margin:10px auto 50px}
+      .feature-label{left:30px;right:30px;bottom:28px}
+      .feature-label small{max-width:410px}
+      .design-process{padding:26px 0 72px}
+      .section{padding:88px 0}
+      .section-head{margin-bottom:32px}
+      .controls{margin:28px 0 28px}
+      .grid{gap:20px}
+      .grid:not(.list) .card{display:flex;flex-direction:column}
+      .grid:not(.list) .card-body{display:flex;flex-direction:column;flex:1;padding:18px 18px 22px}
+      .grid:not(.list) .card h3{font-size:24px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.3em}
+      .grid:not(.list) .card p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+      .about-grid{grid-template-columns:minmax(300px,.62fr) 1.38fr;gap:72px}
+      .footer-grid{gap:50px}
+      .panel{width:min(1240px,calc(100% - 64px))}
+      .project-content{padding:38px;gap:54px}
+    }
+    @media(min-width:1600px){
+      .wrap{width:min(1500px,calc(100% - 128px))}
+      .hero{padding-top:82px}
+      h1{font-size:clamp(86px,5.8vw,112px);max-width:1180px}
+      .hero-bottom{grid-template-columns:minmax(0,1.55fr) minmax(310px,.45fr);gap:88px}
+      .feature{height:640px;border-radius:20px}
+      .grid{gap:22px}
+      .grid:not(.list) .card{grid-column:span 3}
+      .section{padding:100px 0}
+      .about-grid{gap:88px}
+    }
     @media(max-width:980px){
       .design-process-head{align-items:start;flex-direction:column}
       nav a{display:none}.hero-bottom,.about-grid,.footer-grid,.project-content{grid-template-columns:1fr}.discipline-stack{max-width:430px}.card{grid-column:span 6}.controls{grid-template-columns:1fr}.views{justify-self:start}.section{padding:55px 0}.feature-label{align-items:start;flex-direction:column}.feature-label small{max-width:100%}}
