@@ -44,6 +44,8 @@ jobs:
 
           convert "assets/sepahan-shahr-innovation/s (2).jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/sepahan-shahr-cover.webp"
 
+          convert "assets/khalkhal-historic/خلخال low.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/khalkhal-cover.webp"
+
           ls -lh assets/thumbs
 
       - name: Commit optimized covers
