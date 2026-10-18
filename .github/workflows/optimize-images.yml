@@ -34,6 +34,8 @@ jobs:
 
           convert "assets/khusf/1o.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/khusf-cover.webp"
 
+          convert "assets/khusf/khusf jenabian.jpg"             -auto-orient -resize "1800x1800>" -strip -quality 80             "assets/thumbs/khusf-jenabian.webp"
+
           convert "Flush plaza with burgundy inlays.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/arak-cover.webp"
 
           convert "sanglaj_sample.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/sanglaj-cover.webp"
