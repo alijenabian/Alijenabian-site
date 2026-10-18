@@ -42,6 +42,8 @@ jobs:
 
           convert "assets/oudlajan/oudl.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/oudlajan-cover.webp"
 
+          convert "assets/sepahan-shahr-innovation/s (2).jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/sepahan-shahr-cover.webp"
+
           ls -lh assets/thumbs
 
       - name: Commit optimized covers
