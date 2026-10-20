@@ -52,6 +52,8 @@ jobs:
 
           convert "assets/sayyad-office-complex/file_0000000035f881f4987a3ec728e7a201.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/sayyad-office-cover.webp"
 
+          convert "assets/komesh-park-semnan/پوستر طرح پارک کومش سمنان.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/komesh-park-cover.webp"
+
           ls -lh assets/thumbs
 
       - name: Commit optimized covers
