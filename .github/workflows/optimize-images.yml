@@ -54,6 +54,8 @@ jobs:
 
           convert "assets/komesh-park-semnan/پوستر طرح پارک کومش سمنان.jpg"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/komesh-park-cover.webp"
 
+          convert "assets/saadatabad-residential-building/file_0000000003448211ab02ae2a5c69cb86.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/saadatabad-residential-cover.webp"
+
           ls -lh assets/thumbs
 
       - name: Commit optimized covers
