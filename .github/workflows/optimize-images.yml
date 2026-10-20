@@ -57,6 +57,8 @@ jobs:
           # Saadatabad cover refresh
           convert "assets/saadatabad-residential-building/file_0000000003448211ab02ae2a5c69cb86.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/saadatabad-residential-cover.webp"
 
+          convert "assets/tehran-commercial-office-complex/file_00000000403482438ae5698ca8ecfe57.png"             -auto-orient -resize "1600x1600>" -strip -quality 78             "assets/thumbs/tehran-commercial-office-cover.webp"
+
           ls -lh assets/thumbs
 
       - name: Commit optimized covers
