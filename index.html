@@ -143,7 +143,7 @@
     .meta{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}
     .card h3{font-size:23px;line-height:1.15;margin:0 0 8px;letter-spacing:-.03em}
     body[dir="rtl"] .card h3{letter-spacing:-.015em}
-    .card p{font-size:14px;color:#65655f;margin:0}
+    .card p{font-size:14px;color:#65655f;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .grid.list{display:block}
     .grid.list .card{display:grid;grid-template-columns:1fr 1.25fr;margin-bottom:10px;min-height:230px}
     .grid.list .thumb{aspect-ratio:auto;min-height:230px}
@@ -194,7 +194,28 @@
     .project-content{padding:32px;display:grid;grid-template-columns:1.25fr .75fr;gap:40px}
     .project-content h2{font-size:clamp(36px,6vw,76px);line-height:.95;margin:0 0 20px;letter-spacing:-.05em}
     body[dir="rtl"] .project-content h2{line-height:1.08;letter-spacing:-.02em}
-    .project-content p{font-size:18px;margin:0;color:#444}
+    .project-content p{font-size:18px;margin:0;color:#444;line-height:1.85}
+    .project-kicker{display:block;font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
+    body[dir="rtl"] .project-kicker{letter-spacing:0;text-transform:none}
+    .project-gallery-wrap{padding:0 32px 32px}
+    .project-gallery-wrap[hidden]{display:none}
+    .project-section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin:4px 0 16px}
+    .project-section-head h3{margin:0;font-size:clamp(24px,3vw,38px);letter-spacing:-.035em}
+    body[dir="rtl"] .project-section-head h3{letter-spacing:-.015em}
+    .project-gallery-wrap .project-gallery{padding:0}
+    .project-related{padding:4px 32px 30px}
+    .project-related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .related-card{border:1px solid var(--line);background:rgba(255,255,255,.26);border-radius:12px;overflow:hidden;cursor:pointer;text-align:inherit;padding:0;color:inherit}
+    .related-card:hover{background:rgba(255,255,255,.55)}
+    .related-thumb{aspect-ratio:1.6/1;background:#d8d3c9 center/cover no-repeat}
+    .related-body{padding:12px}
+    .related-body small{display:block;color:var(--muted);margin-bottom:5px}
+    .related-body strong{display:block;font-size:15px;line-height:1.35}
+    .project-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 32px 34px}
+    .project-nav button{border:1px solid var(--line);background:transparent;border-radius:12px;padding:14px 16px;cursor:pointer;text-align:inherit;color:inherit}
+    .project-nav button:hover{background:rgba(255,255,255,.45)}
+    .project-nav button:disabled{opacity:.35;cursor:default}
+    @media(max-width:640px){.project-gallery-wrap,.project-related{padding-left:22px;padding-right:22px}.project-related-grid{grid-template-columns:1fr}.project-nav{padding:0 22px 26px;grid-template-columns:1fr}}
     .specs{display:grid;gap:13px}
     .spec{border-top:1px solid var(--line);padding-top:8px}
     .spec small{display:block;color:var(--muted);margin-bottom:4px}
@@ -337,14 +358,22 @@
     <div class="panel-top"><strong id="modalCategory"></strong><button class="close" id="closeModal" aria-label="Close">×</button></div>
     <div class="project-hero"></div>
     <div class="project-content">
-      <div><h2 id="modalTitle"></h2><p id="modalDesc"></p></div>
+      <div><span class="project-kicker" id="modalIdeaLabel"></span><h2 id="modalTitle"></h2><p id="modalDesc"></p></div>
       <div class="specs" id="modalSpecs"></div>
     </div>
-    <div class="project-gallery" id="modalGallery"></div>
+    <section class="project-gallery-wrap" id="modalGalleryWrap" hidden>
+      <div class="project-section-head"><h3 id="modalGalleryTitle"></h3></div>
+      <div class="project-gallery" id="modalGallery"></div>
+    </section>
     <section class="project-videos-wrap" id="modalVideosWrap" hidden>
       <div class="project-videos-head"><h3 id="modalVideosTitle"></h3></div>
       <div class="project-videos" id="modalVideos"></div>
     </section>
+    <section class="project-related" id="modalRelatedWrap">
+      <div class="project-section-head"><h3 id="modalRelatedTitle"></h3></div>
+      <div class="project-related-grid" id="modalRelated"></div>
+    </section>
+    <div class="project-nav"><button id="prevProject"></button><button id="nextProject"></button></div>
   </div>
 </div>
 
@@ -361,7 +390,7 @@ const copy={
   aboutCopy:'رویکرد من بر این ایده استوار است که طراحی خوب از خواندن دقیق زمینه آغاز می‌شود؛ از مورفولوژی و حافظه جمعی تا زیرساخت، اکولوژی و امکان اجرا.',
   fact1:'حوزه اصلی فعالیت',fact2:'سال تجربه حرفه‌ای',fact3:'تحلیل فضایی و داده‌محور',fact4:'پژوهش، ضابطه و راهنمای طراحی',
   footerTitle:'برای گفت‌وگو درباره یک پروژه',footerText:'برای همکاری حرفه‌ای، پروژه‌های طراحی، برنامه‌ریزی شهری و پژوهش می‌توانید مستقیماً با من در تماس باشید.',phoneLabel:'همراه',emailLabel:'ایمیل',footerNav:'دسترسی',footerLang:'زبان',copyright:'معماری · طراحی شهری · شهرسازی · پژوهش',
-  all:'همه',architecture:'معماری',urbanDesign:'طراحی شهری',urbanPlanning:'شهرسازی',research:'پژوهش',noResults:'پروژه‌ای با این جست‌وجو پیدا نشد.',year:'سال',location:'مکان',role:'حوزه',status:'وضعیت',projectVideos:'ویدیوهای پروژه',video:'ویدیو',ongoing:'در حال توسعه',completed:'تکمیل‌شده',professional:'حرفه‌ای',study:'مطالعاتی'
+  all:'همه',architecture:'معماری',urbanDesign:'طراحی شهری',urbanPlanning:'شهرسازی',research:'پژوهش',noResults:'پروژه‌ای با این جست‌وجو پیدا نشد.',year:'سال',location:'مکان',role:'حوزه',status:'وضعیت',designIdea:'ایده و راهبرد طراحی',projectGallery:'گالری پروژه',relatedProjects:'پروژه‌های مرتبط',previousProject:'پروژه قبلی',nextProject:'پروژه بعدی',projectVideos:'ویدیوهای پروژه',video:'ویدیو',ongoing:'در حال توسعه',completed:'تکمیل‌شده',professional:'حرفه‌ای',study:'مطالعاتی'
  },
  en:{
   brand:'Alijenabian',navWork:'Work',navAbout:'About',navContact:'Contact',
@@ -374,7 +403,7 @@ const copy={
   aboutCopy:'My approach starts with a careful reading of context — from morphology and collective memory to infrastructure, ecology, and the realities of implementation.',
   fact1:'core fields of practice',fact2:'years of professional experience',fact3:'spatial & data-driven analysis',fact4:'research, codes & design guidance',
   footerTitle:'Start a conversation about a project',footerText:'For professional collaborations, design projects, urban planning, and research, you can contact me directly.',phoneLabel:'Mobile',emailLabel:'Email',footerNav:'Navigate',footerLang:'Language',copyright:'Architecture · Urban Design · Urban Planning · Research',
-  all:'All',architecture:'Architecture',urbanDesign:'Urban Design',urbanPlanning:'Urban Planning',research:'Research',noResults:'No projects match your search.',year:'Year',location:'Location',role:'Field',status:'Status',projectVideos:'Project Videos',video:'Video',ongoing:'Ongoing',completed:'Completed',professional:'Professional',study:'Study'
+  all:'All',architecture:'Architecture',urbanDesign:'Urban Design',urbanPlanning:'Urban Planning',research:'Research',noResults:'No projects match your search.',year:'Year',location:'Location',role:'Field',status:'Status',designIdea:'Design Idea & Strategy',projectGallery:'Project Gallery',relatedProjects:'Related Projects',previousProject:'Previous Project',nextProject:'Next Project',projectVideos:'Project Videos',video:'Video',ongoing:'Ongoing',completed:'Completed',professional:'Professional',study:'Study'
  }
 };
 const projects=[
@@ -432,7 +461,10 @@ function openProject(id){
  const p=projects.find(x=>x.id===id); if(!p)return;
  document.getElementById('modalCategory').textContent=t(categoryMap[p.cat]);
  document.getElementById('modalTitle').textContent=p[lang].title;
+ document.getElementById('modalIdeaLabel').textContent=t('designIdea');
  document.getElementById('modalDesc').textContent=p[lang].desc;
+ document.getElementById('modalGalleryTitle').textContent=t('projectGallery');
+ document.getElementById('modalRelatedTitle').textContent=t('relatedProjects');
  document.getElementById('modalSpecs').innerHTML=[
   [t('year'),p.year],[t('location'),p[lang].loc],[t('role'),p[lang].role],[t('status'),p[lang].status]
  ].map(([a,b])=>`<div class="spec"><small>${a}</small><strong>${b}</strong></div>`).join('');
@@ -443,8 +475,11 @@ function openProject(id){
  hero.style.backgroundPosition='center center';
  hero.style.backgroundRepeat='no-repeat';
  hero.style.backgroundColor=p.coverBg||'transparent';
+ const galleryWrap=document.getElementById('modalGalleryWrap');
  const gallery=document.getElementById('modalGallery');
- gallery.innerHTML=(p.images||[]).map((src,idx)=>`<img src="${encodeURI(src)}" loading="lazy" alt="${p[lang].title} — ${idx+1}">`).join('');
+ const projectImages=p.images||[];
+ galleryWrap.hidden=!projectImages.length;
+ gallery.innerHTML=projectImages.map((src,idx)=>`<img src="${encodeURI(src)}" loading="lazy" alt="${p[lang].title} — ${idx+1}">`).join('');
  const videosWrap=document.getElementById('modalVideosWrap');
  const videos=document.getElementById('modalVideos');
  const projectVideos=(p.videos||[]).map(v=>typeof v==='string'?{src:v}:v).filter(v=>v&&v.src);
@@ -455,7 +490,23 @@ function openProject(id){
   const poster=v.poster?` poster="${encodeURI(v.poster)}"`:'';
   return `<figure class="project-video"><video controls preload="metadata" playsinline${poster}><source src="${encodeURI(v.src)}" type="${v.type||'video/mp4'}"></video><figcaption>${title}</figcaption></figure>`;
  }).join('');
+ const related=projects.filter(x=>x.id!==p.id&&x.cat===p.cat).slice(0,3);
+ const relatedWrap=document.getElementById('modalRelatedWrap');
+ relatedWrap.hidden=!related.length;
+ document.getElementById('modalRelated').innerHTML=related.map(x=>`<button class="related-card" data-related="${x.id}"><div class="related-thumb" ${x.cover?`style="background-image:url('${encodeURI(x.cover)}')"`:''}></div><div class="related-body"><small>${t(categoryMap[x.cat])}</small><strong>${x[lang].title}</strong></div></button>`).join('');
+ document.querySelectorAll('[data-related]').forEach(btn=>btn.onclick=()=>openProject(btn.dataset.related));
+ const currentIndex=projects.findIndex(x=>x.id===p.id);
+ const prev=projects[currentIndex-1]||null;
+ const next=projects[currentIndex+1]||null;
+ const prevBtn=document.getElementById('prevProject');
+ const nextBtn=document.getElementById('nextProject');
+ prevBtn.textContent=prev?`${t('previousProject')} · ${prev[lang].title}`:t('previousProject');
+ nextBtn.textContent=next?`${t('nextProject')} · ${next[lang].title}`:t('nextProject');
+ prevBtn.disabled=!prev; nextBtn.disabled=!next;
+ prevBtn.onclick=()=>prev&&openProject(prev.id);
+ nextBtn.onclick=()=>next&&openProject(next.id);
  const m=document.getElementById('modal');m.classList.add('open');m.setAttribute('aria-hidden','false');
+ const panel=m.querySelector('.panel'); if(panel)panel.scrollTop=0;
 }
 document.getElementById('closeModal').onclick=()=>{document.querySelectorAll('#modalVideos video').forEach(v=>{v.pause();v.currentTime=0});document.getElementById('modal').classList.remove('open');document.getElementById('modal').setAttribute('aria-hidden','true')};
 document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')document.getElementById('closeModal').click()};
