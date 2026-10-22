@@ -268,6 +268,36 @@
       .brand-masthead{min-height:190px;padding:24px 14px 20px}
       .brand-masthead img{width:min(430px,92vw)}
       .wrap{width:min(100% - 22px,1440px)}.topbar{height:64px}.brand-logo{width:175px}.hero{padding-top:38px}.hero-bottom{margin-top:26px}.card{grid-column:1/-1}.grid.list .card{display:block}.section-head{display:block}.section-head p{margin-top:14px}.feature{min-height:360px}.feature-label{left:14px;right:14px;bottom:14px}.project-content{padding:22px}.project-hero{height:250px}.facts{grid-template-columns:1fr}.copyright{display:block}.copyright span{display:block;margin-top:5px}}
+  
+    /* Portfolio refinement: visual-first home page */
+    .featured-projects{padding:18px 0 52px}
+    .featured-projects-head{display:flex;justify-content:space-between;gap:30px;align-items:end;border-top:1px solid #bdbdb6;padding-top:16px;margin-bottom:22px}
+    .featured-projects-head h2{font-size:clamp(32px,5vw,72px);line-height:1;margin:0;letter-spacing:-.045em}
+    body[dir="rtl"] .featured-projects-head h2{letter-spacing:-.025em}
+    .featured-projects-head p{max-width:520px;color:var(--muted);margin:0}
+    .featured-lead{min-height:clamp(430px,54vw,700px);border-radius:var(--radius);overflow:hidden;position:relative;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.03) 58%),url("assets/thumbs/osmaniye-cover.webp") center/cover no-repeat;box-shadow:var(--shadow);margin-bottom:16px}
+    .featured-lead-label{position:absolute;left:26px;right:26px;bottom:24px;color:#fff;max-width:760px}
+    body[dir="rtl"] .featured-lead-label{left:auto;right:26px}
+    .featured-lead-label span{display:inline-block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+    body[dir="rtl"] .featured-lead-label span{text-transform:none;letter-spacing:0}
+    .featured-lead-label h3{font-size:clamp(34px,5vw,68px);line-height:.98;letter-spacing:-.04em;margin:0 0 10px}
+    body[dir="rtl"] .featured-lead-label h3{letter-spacing:-.02em;line-height:1.08}
+    .featured-lead-label p{font-size:14px;max-width:560px;margin:0;color:rgba(255,255,255,.92)}
+    .featured-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .featured-card{grid-column:span 3;border:0;background:rgba(248,244,235,.9);border-radius:14px;overflow:hidden;cursor:pointer;text-align:inherit;color:inherit;padding:0;transition:transform .2s ease,box-shadow .2s ease}
+    .featured-card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(0,0,0,.09)}
+    .featured-card-media{aspect-ratio:1.3/1;background:#d8d3c9 center/cover no-repeat}
+    .featured-card-body{padding:14px 14px 16px}
+    .featured-card-body small{display:flex;justify-content:space-between;gap:10px;color:var(--muted);margin-bottom:7px;font-size:11px}
+    .featured-card-body strong{display:block;font-size:18px;line-height:1.2}
+    .grid:not(.list) .card p{display:none}
+    .grid:not(.list) .card-body{padding-bottom:16px}
+    .grid:not(.list) .card h3{margin-bottom:0}
+    .nav-cta{border-color:#111!important;background:#111!important;color:#fff!important}
+    .nav-cta:hover{background:#2a2926!important}
+    @media(max-width:980px){.featured-projects-head{align-items:start;flex-direction:column}.featured-card{grid-column:span 6}}
+    @media(max-width:640px){.featured-projects{padding-top:8px}.featured-projects-head{display:block}.featured-projects-head p{margin-top:12px}.featured-lead{min-height:410px}.featured-lead-label{left:16px;right:16px;bottom:16px}.featured-card{grid-column:1/-1}}
+
   </style>
 </head>
 <body dir="ltr">
@@ -280,7 +310,7 @@
     <nav>
       <a href="#work" data-i18n="navWork">پروژه‌ها</a>
       <a href="#about" data-i18n="navAbout">درباره من</a>
-      <a href="#contact" data-i18n="navContact">تماس</a>
+      <a href="#contact" class="nav-cta" data-i18n="navContact">تماس</a>
       <div class="lang" aria-label="Language switcher">
         <button data-lang="fa">FA</button><button class="active" data-lang="en">EN</button>
       </div>
@@ -297,22 +327,19 @@
     </div>
   </section>
 
-  <div class="wrap feature" role="img" aria-label="Osmaniye City Center Masterplan">
-    <div class="feature-label">
-      <h2 data-i18n="featuredTitle">طرح جامع مرکز شهر عثمانیه</h2>
-      <small data-i18n="featuredText">طرح جامع مرکز شهر عثمانیه، ترکیه؛ طراحی و ترسیم دستی با ماژیک.</small>
+  <section class="wrap featured-projects" aria-labelledby="featured-projects-title">
+    <div class="featured-projects-head">
+      <h2 id="featured-projects-title" data-i18n="featuredSectionTitle">پروژه‌های منتخب</h2>
+      <p data-i18n="featuredSectionIntro">مجموعه‌ای کوتاه از پروژه‌های شاخص در معماری، طراحی شهری و پژوهش؛ برای ورود سریع به مهم‌ترین بخش‌های پرتفولیو.</p>
     </div>
-  </div>
-
-  <section class="wrap design-process" aria-labelledby="osmaniye-process-title">
-    <div class="design-process-head">
-      <h3 id="osmaniye-process-title" data-i18n="processTitle">فرآیند طراحی</h3>
-      <p data-i18n="processText">تصویری از روند طراحی دستی پروژه عثمانیه با ماژیک؛ بخشی از فرآیند توسعه ایده و ارائه طرح.</p>
-    </div>
-    <figure>
-      <img src="assets/osmaniye/IMG_20261017_193811_704.jpg" alt="Osmaniye City Center Masterplan — design process with markers" loading="lazy">
-      <figcaption data-i18n="processCaption">طراحی دستی و توسعه ایده با ماژیک — پروژه مرکز شهر عثمانیه</figcaption>
-    </figure>
+    <article class="featured-lead" role="img" aria-label="Osmaniye City Center Masterplan">
+      <div class="featured-lead-label">
+        <span data-i18n="featuredLeadTag">طراحی شهری · ترکیه</span>
+        <h3 data-i18n="featuredTitle">طرح جامع مرکز شهر عثمانیه</h3>
+        <p data-i18n="featuredText">طرح جامع مرکز شهر عثمانیه، ترکیه؛ طراحی و ترسیم دستی با ماژیک.</p>
+      </div>
+    </article>
+    <div class="featured-grid" id="featuredGrid"></div>
   </section>
 
   <section class="wrap section" id="work">
@@ -383,7 +410,7 @@ const copy={
   brand:'علی جنابیان',navWork:'پروژه‌ها',navAbout:'درباره من',navContact:'تماس',
   heroEyebrow:'معماری · طراحی شهری · شهرسازی · پژوهش',heroTitle:'از بنا تا شهر؛ طراحی در پیوند با زمینه، زندگی و آینده.',
   heroLead:'پرتفولیوی حرفه‌ای علی جنابیان؛ مجموعه‌ای از پروژه‌های معماری، طراحی شهری، برنامه‌ریزی شهری و پژوهش‌های کاربردی در مقیاس‌های مختلف.',
-  featuredTitle:'طرح جامع مرکز شهر عثمانیه',featuredText:'طرح جامع مرکز شهر عثمانیه، ترکیه؛ طراحی و ترسیم دستی با ماژیک.',
+  featuredSectionTitle:'پروژه‌های منتخب',featuredSectionIntro:'مجموعه‌ای کوتاه از پروژه‌های شاخص در معماری، طراحی شهری و پژوهش؛ برای ورود سریع به مهم‌ترین بخش‌های پرتفولیو.',featuredLeadTag:'طراحی شهری · ترکیه',featuredTitle:'طرح جامع مرکز شهر عثمانیه',featuredText:'طرح جامع مرکز شهر عثمانیه، ترکیه؛ طراحی و ترسیم دستی با ماژیک.',
   processTitle:'فرآیند طراحی',processText:'تصویری از روند طراحی دستی پروژه عثمانیه با ماژیک؛ بخشی از فرآیند توسعه ایده و ارائه طرح.',processCaption:'طراحی دستی و توسعه ایده با ماژیک — پروژه مرکز شهر عثمانیه',
   workTitle:'پروژه‌ها',workIntro:'چهار حوزه از مقیاس معماری تا شهر و پژوهش؛ هر پروژه می‌تواند در بیش از یک حوزه برچسب‌گذاری شود.',
   aboutTitle:'درباره من',aboutIntro:'تمرکز حرفه‌ای بر طراحی و پژوهش میان‌رشته‌ای با نگاه هم‌زمان به مقیاس بنا، فضاهای شهری و ساختارهای کلان.',aboutName:'علی جنابیان',aboutRole:'معمار، طراح شهری و برنامه‌ریز شهری',
@@ -396,7 +423,7 @@ const copy={
   brand:'Alijenabian',navWork:'Work',navAbout:'About',navContact:'Contact',
   heroEyebrow:'Architecture · Urban Design · Urban Planning · Research',heroTitle:'From building to city: design connected to context, life, and the future.',
   heroLead:'The professional portfolio of Alijenabian, bringing together architecture, urban design, urban planning, and applied research across multiple scales.',
-  featuredTitle:'Osmaniye City Center Masterplan',featuredText:'Osmaniye city center masterplan, Turkey — hand-drawn and rendered with markers.',
+  featuredSectionTitle:'Featured Projects',featuredSectionIntro:'A concise selection of key work across architecture, urban design, and research — a faster path into the core portfolio.',featuredLeadTag:'Urban Design · Turkey',featuredTitle:'Osmaniye City Center Masterplan',featuredText:'Osmaniye city center masterplan, Turkey — hand-drawn and rendered with markers.',
   processTitle:'Design Process',processText:'A working view of the Osmaniye project, showing the hand-rendered marker process used to develop and communicate the design.',processCaption:'Hand rendering and design development with markers — Osmaniye City Center Masterplan',
   workTitle:'Selected Work',workIntro:'Four fields spanning architecture, city-making, planning, and research. Projects can carry more than one discipline tag.',
   aboutTitle:'About',aboutName:'Ali Jenabian',aboutRole:'Architect · Urban Designer · Urban Planner',aboutIntro:'An interdisciplinary practice linking the scale of buildings, public spaces, and metropolitan systems through design and research.',
@@ -435,12 +462,19 @@ function setLanguage(next){
  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
  const s=document.getElementById('search');s.placeholder=s.dataset['placeholder'+(lang==='fa'?'Fa':'En')];
- renderDisciplines();renderFilters();renderProjects();
+ renderDisciplines();renderFeatured();renderFilters();renderProjects();
 }
 window.setLanguage=setLanguage;
 function renderDisciplines(){
  const items=lang==='fa'?[['01','معماری'],['02','طراحی شهری'],['03','شهرسازی'],['04','پژوهش']]:[['01','Architecture'],['02','Urban Design'],['03','Urban Planning'],['04','Research']];
  document.getElementById('disciplines').innerHTML=items.map(([n,l])=>`<span><b>${l}</b><em>${n}</em></span>`).join('');
+}
+function renderFeatured(){
+ const featuredIds=['saadatabad-residential-building','oudlajan-urban-landscape','arak','sanglaj'];
+ const list=featuredIds.map(id=>projects.find(p=>p.id===id)).filter(Boolean);
+ const el=document.getElementById('featuredGrid'); if(!el)return;
+ el.innerHTML=list.map(p=>`<button class="featured-card" data-feature-id="${p.id}"><div class="featured-card-media" ${p.cover?`style="background-image:url('${encodeURI(p.cover)}');background-size:${p.coverFit||'cover'};background-position:center;background-color:${p.coverBg||'#d8d3c9'}"`:''}></div><div class="featured-card-body"><small><span>${t(categoryMap[p.cat])}</span><span>${p.year}</span></small><strong>${p[lang].title}</strong></div></button>`).join('');
+ el.querySelectorAll('[data-feature-id]').forEach(btn=>btn.onclick=()=>openProject(btn.dataset.featureId));
 }
 function renderFilters(){
  const filters=[['all',t('all')],['architecture',t('architecture')],['urban-design',t('urbanDesign')],['planning',t('urbanPlanning')],['research',t('research')]];
