@@ -197,7 +197,7 @@
     .project-content p{font-size:18px;margin:0;color:#444;line-height:1.85}
     .project-kicker{display:block;font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
     body[dir="rtl"] .project-kicker{letter-spacing:0;text-transform:none}
-    .project-gallery-wrap{padding:0 32px 32px}
+    .project-gallery-wrap{padding:0 32px 32px}.project-process-wrap{padding:0 32px 32px}.project-process-copy{max-width:620px;color:var(--muted);font-size:14px;margin:0}.project-process-figure{margin:0}.project-process-figure img{display:block;width:100%;height:auto;border-radius:12px;background:#eee}.project-process-figure figcaption{margin-top:9px;font-size:12px;color:var(--muted)}
     .project-gallery-wrap[hidden]{display:none}
     .project-section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;border-top:1px solid var(--line);padding-top:14px;margin:4px 0 16px}
     .project-section-head h3{margin:0;font-size:clamp(24px,3vw,38px);letter-spacing:-.035em}
@@ -215,7 +215,7 @@
     .project-nav button{border:1px solid var(--line);background:transparent;border-radius:12px;padding:14px 16px;cursor:pointer;text-align:inherit;color:inherit}
     .project-nav button:hover{background:rgba(255,255,255,.45)}
     .project-nav button:disabled{opacity:.35;cursor:default}
-    @media(max-width:640px){.project-gallery-wrap,.project-related{padding-left:22px;padding-right:22px}.project-related-grid{grid-template-columns:1fr}.project-nav{padding:0 22px 26px;grid-template-columns:1fr}}
+    @media(max-width:640px){.project-gallery-wrap,.project-process-wrap,.project-related{padding-left:22px;padding-right:22px}.project-related-grid{grid-template-columns:1fr}.project-nav{padding:0 22px 26px;grid-template-columns:1fr}}
     .specs{display:grid;gap:13px}
     .spec{border-top:1px solid var(--line);padding-top:8px}
     .spec small{display:block;color:var(--muted);margin-bottom:4px}
@@ -275,7 +275,7 @@
     .featured-projects-head h2{font-size:clamp(32px,5vw,72px);line-height:1;margin:0;letter-spacing:-.045em}
     body[dir="rtl"] .featured-projects-head h2{letter-spacing:-.025em}
     .featured-projects-head p{max-width:520px;color:var(--muted);margin:0}
-    .featured-lead{min-height:clamp(430px,54vw,700px);border-radius:var(--radius);overflow:hidden;position:relative;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.03) 58%),url("assets/thumbs/osmaniye-cover.webp") center/cover no-repeat;box-shadow:var(--shadow);margin-bottom:16px}
+    .featured-lead{min-height:clamp(430px,54vw,700px);border-radius:var(--radius);overflow:hidden;position:relative;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.03) 58%),url("assets/thumbs/osmaniye-cover.webp") center/cover no-repeat;box-shadow:var(--shadow);margin-bottom:16px;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease}.featured-lead:hover{transform:translateY(-2px);box-shadow:0 22px 56px rgba(0,0,0,.14)}.featured-lead:focus-visible{outline:3px solid #111;outline-offset:4px}
     .featured-lead-label{position:absolute;left:26px;right:26px;bottom:24px;color:#fff;max-width:760px}
     body[dir="rtl"] .featured-lead-label{left:auto;right:26px}
     .featured-lead-label span{display:inline-block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
@@ -332,7 +332,7 @@
       <h2 id="featured-projects-title" data-i18n="featuredSectionTitle">پروژه‌های منتخب</h2>
       <p data-i18n="featuredSectionIntro">مجموعه‌ای کوتاه از پروژه‌های شاخص در معماری، طراحی شهری و پژوهش؛ برای ورود سریع به مهم‌ترین بخش‌های پرتفولیو.</p>
     </div>
-    <article class="featured-lead" role="img" aria-label="Osmaniye City Center Masterplan">
+    <article class="featured-lead" id="featuredLead" role="button" tabindex="0" aria-label="Open Osmaniye City Center Masterplan">
       <div class="featured-lead-label">
         <span data-i18n="featuredLeadTag">طراحی شهری · ترکیه</span>
         <h3 data-i18n="featuredTitle">طرح جامع مرکز شهر عثمانیه</h3>
@@ -388,6 +388,13 @@
       <div><span class="project-kicker" id="modalIdeaLabel"></span><h2 id="modalTitle"></h2><p id="modalDesc"></p></div>
       <div class="specs" id="modalSpecs"></div>
     </div>
+    <section class="project-process-wrap" id="modalProcessWrap" hidden>
+      <div class="project-section-head"><h3 id="modalProcessTitle"></h3><p class="project-process-copy" id="modalProcessText"></p></div>
+      <figure class="project-process-figure">
+        <img id="modalProcessImage" src="" alt="" loading="lazy">
+        <figcaption id="modalProcessCaption"></figcaption>
+      </figure>
+    </section>
     <section class="project-gallery-wrap" id="modalGalleryWrap" hidden>
       <div class="project-section-head"><h3 id="modalGalleryTitle"></h3></div>
       <div class="project-gallery" id="modalGallery"></div>
@@ -434,12 +441,12 @@ const copy={
  }
 };
 const projects=[
+ {id:'osmaniye-city-center-masterplan',cat:'urban-design',cover:'assets/thumbs/osmaniye-cover.webp?v=1',processImage:'assets/osmaniye/IMG_20261017_193811_704.jpg?v=1',images:['osmaniye-site-cover.jpg?v=1'],fa:{title:'طرح جامع مرکز شهر عثمانیه',desc:'طرح جامع مرکز شهر عثمانیه در ترکیه با تمرکز بر شکل‌گیری ساختار فضایی خوانا و توسعه ایده از طریق طراحی و ترسیم دستی.',loc:'عثمانیه، ترکیه',role:'طراحی شهری + طرح جامع',status:'—'},en:{title:'Osmaniye City Center Masterplan',desc:'A city-center masterplan in Osmaniye, Turkey, developed through a legible spatial structure and a hand-drawn design process.',loc:'Osmaniye, Turkey',role:'Urban Design + Masterplanning',status:'—'},year:'—'},
  {id:'tehran-commercial-office-complex',cat:'architecture',cover:'assets/thumbs/tehran-commercial-office-cover.webp?v=1',images:['assets/tehran-commercial-office-complex/file_00000000403482438ae5698ca8ecfe57.png?v=1'],fa:{title:'مجتمع تجاری اداری تهران',desc:'پروژه معماری مجتمع تجاری و اداری در تهران.',loc:'تهران',role:'معماری',status:'—'},en:{title:'Tehran Commercial & Office Complex',desc:'Architectural design project for a commercial and office complex in Tehran.',loc:'Tehran',role:'Architecture',status:'—'},year:'—'},
  {id:'saadatabad-residential-building',cat:'architecture',cover:'assets/thumbs/saadatabad-residential-cover.webp?v=1',images:['assets/saadatabad-residential-building/file_0000000003448211ab02ae2a5c69cb86.png?v=1','assets/saadatabad-residential-building/file_00000000860c820abcfe7575cc745e7a.png?v=1'],fa:{title:'ساختمان مسکونی سعادت‌آباد',desc:'طراحی پلان و نما در این پروژه به‌صورت یکپارچه شکل گرفته است؛ تنوع حجمی و تراس‌های دابل‌هایت، امکان کاشت و رشد درخت را در بدنه ساختمان فراهم می‌کنند.',loc:'سعادت‌آباد، تهران',role:'معماری',status:'—'},en:{title:'Saadatabad Residential Building',desc:'The plan and facade were developed as an integrated design. Volumetric variation and double-height terraces create space for planting and growing trees within the building envelope.',loc:'Saadatabad, Tehran',role:'Architecture',status:'—'},year:'۱۴۰۰'},
  {id:'zaferanieh-residential-building',cat:'architecture',fa:{title:'ساختمان مسکونی زعفرانیه',desc:'پروژه معماری ساختمان مسکونی در زعفرانیه تهران.',loc:'زعفرانیه، تهران',role:'معماری',status:'—'},en:{title:'Zaferanieh Residential Building',desc:'Architectural design project for a residential building in Zaferanieh, Tehran.',loc:'Zaferanieh, Tehran',role:'Architecture',status:'—'},year:'—'},
  {id:'komesh-park-semnan',cat:'urban-design',cover:'assets/thumbs/komesh-park-cover.webp?v=1',images:['assets/komesh-park-semnan/پوستر طرح پارک کومش سمنان.jpg?v=1'],fa:{title:'طراحی پارک کومش سمنان',desc:'پروژه طراحی شهری و منظر پارک کومش در شهر سمنان.',loc:'سمنان',role:'طراحی شهری + منظر',status:'—'},en:{title:'Komesh Park Design, Semnan',desc:'Urban design and landscape project for Komesh Park in Semnan.',loc:'Semnan',role:'Urban Design + Landscape',status:'—'},year:'—'},
  {id:'sayyad-expressway-office-complex',cat:'architecture',cover:'assets/thumbs/sayyad-office-cover.webp?v=1',images:['assets/sayyad-office-complex/file_0000000035f881f4987a3ec728e7a201.png'],fa:{title:'مجتمع اداری بزرگراه صیاد',desc:'پروژه معماری مجتمع اداری در بزرگراه صیاد.',loc:'تهران',role:'معماری',status:'—'},en:{title:'Sayyad Expressway Office Complex',desc:'Architectural design project for an office complex on Sayyad Expressway.',loc:'Tehran',role:'Architecture',status:'—'},year:'—'},
- {id:'saadatabad-architecture',cat:'architecture',images:[],videos:[],fa:{title:'ساختمان مسکونی سعادت‌آباد',desc:'در این پروژه، طراحی نما مستقل از پلان شکل نگرفته، بلکه پلان، حجم و نما به‌صورت یکپارچه توسعه یافته‌اند؛ به‌گونه‌ای که سازمان فضایی پلان مستقیماً در ترکیب حجمی و بیان نما تبلور پیدا می‌کند. تنوع حجمی نما با هدف ایجاد پویایی بصری و کیفیت زیبایی‌شناختی شکل گرفته و تراس‌های دابل‌هَیت نیز به‌عنوان بخشی از همین منطق طراحی، با فراهم کردن عمق و ارتفاع مناسب، امکان کاشت و رشد درخت و حضور مؤثر فضای سبز در ارتفاع را فراهم می‌کنند.',loc:'سعادت‌آباد، تهران',role:'معماری',status:'—'},en:{title:'Saadatabad Residential Building',desc:'The facade was not conceived independently from the plan; instead, plan, massing, and facade were developed as an integrated architectural system, allowing the spatial organization of the plan to be expressed directly in the building volume and elevation. The volumetric articulation of the facade was designed to create visual richness and architectural beauty, while the double-height terraces form part of the same design logic, providing sufficient depth and height for planting and tree growth and enabling meaningful greenery at upper levels.',loc:'Saadatabad, Tehran',role:'Architecture',status:'—'},year:'۱۴۰۰'},
  {id:'khalkhal-historic-urban-restoration',cat:'urban-design',cover:'assets/thumbs/khalkhal-cover.webp?v=1',images:['assets/khalkhal-historic/خلخال low.jpg'],fa:{title:'مرمت شهری بافت تاریخی شهر خلخال',desc:'پروژه مرمت شهری و بازآفرینی بافت تاریخی شهر خلخال.',loc:'خلخال، اردبیل',role:'طراحی شهری + مرمت و بازآفرینی بافت تاریخی',status:'—'},en:{title:'Urban Restoration of Khalkhal Historic Fabric',desc:'Urban restoration and regeneration project for the historic fabric of Khalkhal.',loc:'Khalkhal, Ardabil',role:'Urban Design + Historic Urban Restoration',status:'—'},year:'—'},
  {id:'sepahan-shahr-innovation-township',cat:'urban-design',cover:'assets/thumbs/sepahan-shahr-cover.webp?v=1',images:['assets/sepahan-shahr-innovation/s (2).jpg','assets/sepahan-shahr-innovation/۲۰۲۱۰۹۰۲_۰۰۲۴۲۷.jpg','assets/sepahan-shahr-innovation/۲۰۲۱۰۹۰۲_۰۰۲۴۵۲.jpg','assets/sepahan-shahr-innovation/۲۰۲۱۰۹۰۲_۰۰۲۵۲۶.jpg','assets/sepahan-shahr-innovation/۲۰۲۱۰۹۰۲_۰۰۲۵۵۱.jpg'],fa:{title:'طراحی اراضی ۶۰۰ هکتاری شهرک نوآوری سپاهانشهر اصفهان',desc:'پروژه طراحی شهری اراضی ۶۰۰ هکتاری شهرک نوآوری سپاهانشهر اصفهان.',loc:'سپاهانشهر، اصفهان',role:'طراحی شهری',status:'—'},en:{title:'Urban Design of the 600-Hectare Sepahan Shahr Innovation Township',desc:'Urban design project for the 600-hectare Sepahan Shahr Innovation Township in Isfahan.',loc:'Sepahan Shahr, Isfahan',role:'Urban Design',status:'—'},year:'—'},
  {id:'oudlajan-urban-landscape',cat:'urban-design',cover:'assets/thumbs/oudlajan-cover.webp?v=1',images:['assets/oudlajan/oudl.jpg?v=1','assets/oudlajan/enhanced_kashf_render_post-1.jpg?v=1'],fa:{title:'طرح منظر شهری عودلاجان',desc:'پروژه طراحی شهری و منظر در محدوده تاریخی عودلاجان.',loc:'عودلاجان، تهران',role:'طراحی شهری',status:'—'},en:{title:'Oudlajan Urban Landscape Plan',desc:'An urban design and landscape project for the historic Oudlajan district.',loc:'Oudlajan, Tehran',role:'Urban Design',status:'—'},year:'—'},
@@ -509,6 +516,19 @@ function openProject(id){
  hero.style.backgroundPosition='center center';
  hero.style.backgroundRepeat='no-repeat';
  hero.style.backgroundColor=p.coverBg||'transparent';
+ const processWrap=document.getElementById('modalProcessWrap');
+ const processImage=document.getElementById('modalProcessImage');
+ const processTitle=document.getElementById('modalProcessTitle');
+ const processText=document.getElementById('modalProcessText');
+ const processCaption=document.getElementById('modalProcessCaption');
+ processWrap.hidden=!p.processImage;
+ if(p.processImage){
+  processTitle.textContent=t('processTitle');
+  processText.textContent=t('processText');
+  processCaption.textContent=t('processCaption');
+  processImage.src=encodeURI(p.processImage);
+  processImage.alt=lang==='fa'?'فرآیند طراحی پروژه مرکز شهر عثمانیه':'Osmaniye City Center Masterplan design process';
+ }
  const galleryWrap=document.getElementById('modalGalleryWrap');
  const gallery=document.getElementById('modalGallery');
  const projectImages=p.images||[];
